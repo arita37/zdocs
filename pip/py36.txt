@@ -8,8 +8,8 @@ cloudpickle
 
 ########################################################
 #### utilmy.images
-scikit-image
-opencv-python-headless
+# scikit-image
+# opencv-python-headless
 
 
 
@@ -21,15 +21,15 @@ stdlib_list
 
 ########################################################
 #### utilmy.adatasets
-scikit-learn
+# scikit-learn
 
 
 
 ########################################################
 #### utilmy.deeplearning
--f https://download.pytorch.org/whl/torch_stable.html 
-torch>=1.10.0+cpu 
-torchvision>=0.11.0+cpu
+#-f https://download.pytorch.org/whl/torch_stable.html 
+#torch>=1.10.0+cpu 
+# torchvision>=0.11.0+cpu
 
 
 
