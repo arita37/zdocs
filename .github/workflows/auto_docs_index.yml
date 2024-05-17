@@ -55,7 +55,7 @@ jobs:
     #  if: steps.cache-pipenv.outputs.cache-hit != 'true'
     #  run: pip install numpy==1.18.2   pillow==6.2.1  scipy
       
-
+    ########  Installl  ################################################### 
     - name: Install repo requirements  1
       if: steps.cache-pipenv.outputs.cache-hit != 'true'
       run: |
@@ -79,16 +79,9 @@ jobs:
       run: |
            python -c "import os, pandas as pd; print(os)"       
         
+ 
 
-    ########  Runs All test  ######################################
-    - name: test_setup
-      run: |
-          mkdir -p    /home/runner/work/log_tmp/
-          chmod -R 777 . 
-
-          
-
-    ########  Generate Docs     
+    ########  Generate Docs. #############################################      
     - name: docs_generate
       continue-on-error: true
       run: |
