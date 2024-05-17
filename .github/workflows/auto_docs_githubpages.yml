@@ -1,4 +1,4 @@
-name: Auto docs_github_pages arita37.github.io/myutil/en/zdocs_y23487teg65f6/
+name: Auto docs_github_pages arita37.github.io/myutil/en/zdocs_all_ytp45654f/
  
 ### target page :  https://arita37.github.io/myutil/en/zdocs_y23487teg65f6/utilmy.html#module-utilmy.cli
 
@@ -53,14 +53,14 @@ jobs:
     - name: Install repo requirements  1
       if: steps.cache-pipenv.outputs.cache-hit != 'true'
       run: |
-           pip install -r  py36_min.txt
+           pip install -r  pip/py36_min.txt
 
 
     - name: Install repo requirements   2
       if: steps.cache-pipenv.outputs.cache-hit != 'true'
       run:  |
         ls .
-        pip install -r  py36_docfull.txt
+        pip install -r  pip/py36_docfull.txt
         pip install protobuf==3.16.0
         pip install onnx
         #pip install -r install/requirements_fake.txt
