@@ -33,10 +33,10 @@ jobs:
       with:
         ref: ${{ github.head_ref }}
         
-    - name: Set up Python 3.7.*
+    - name: Set up Python 3.9.*
       uses: actions/setup-python@v1
       with:
-        python-version: 3.7.*
+        python-version: 3.9.*
       
     - name: Install pipenv
       uses: dschep/install-pipenv-action@v1
@@ -47,7 +47,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: /opt/hostedtoolcache/Python/
-        key: ${{ runner.os }}-pipenv-${{ hashFiles('**py36_docfull.txt') }}
+        key: ${{ runner.os }}-pipenv-${{ hashFiles('**/pip/py36_docfull.txt') }}
           
 
     #- name: Install numpy
@@ -58,14 +58,14 @@ jobs:
     - name: Install repo requirements  1
       if: steps.cache-pipenv.outputs.cache-hit != 'true'
       run: |
-           pip install -r  py36_min.txt
+           pip install -r  pip/py36_min.txt
 
 
     - name: Install repo requirements   2
       if: steps.cache-pipenv.outputs.cache-hit != 'true'
       run:  |
         ls .
-        pip install -r  py36_docfull.txt
+        pip install -r  pip/py36.txt
 
 
     - name: Install utilmy
@@ -74,21 +74,10 @@ jobs:
         python -c "import utilmy"
 
            
-
-
-
     - name: test_import
       run: |
            python -c "import os, pandas as pd; print(os)"
            python -c "import utilmy"        
-        
-
-    - name: Code Syntax Checker flake8
-      continue-on-error: true
-      run:  |
-        pip install --upgrade flake8
-        flake8  --statistics   --count    --max-line-length 140   2>&1 | tee -a docs/flake8_syntax_error.py  
-        
         
 
     ########  Runs All test  ######################################
@@ -103,10 +92,10 @@ jobs:
     - name: docs_generate
       continue-on-error: true
       run: |
-           docs all      --repo_dir utilmy/  --dirout docs/
-           rm -rf docs/doc_main.md
-           rm -rf docs/output_repo.csv
-           pip freeze > docs/piplist.txt
+           docs all      --repo_dir repos/  --dirout docs/
+           # rm -rf docs/doc_main.md
+           # rm -rf docs/output_repo.csv
+           # pip freeze > docs/piplist.txt
 
 
     - name: Auto-Commit
